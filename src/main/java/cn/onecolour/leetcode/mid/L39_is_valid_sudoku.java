@@ -1,4 +1,4 @@
-package cn.onecolour.mid;
+package cn.onecolour.leetcode.mid;
 
 import java.util.HashSet;
 import java.util.Set;

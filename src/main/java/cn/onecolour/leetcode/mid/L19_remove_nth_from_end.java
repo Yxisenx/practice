@@ -1,4 +1,4 @@
-package cn.onecolour.mid;
+package cn.onecolour.leetcode.mid;
 
 /**
  * @author yang

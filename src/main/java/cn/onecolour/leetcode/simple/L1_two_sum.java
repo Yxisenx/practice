@@ -1,4 +1,4 @@
-package cn.onecolour.simple;
+package cn.onecolour.leetcode.simple;
 
 import java.util.*;
 
