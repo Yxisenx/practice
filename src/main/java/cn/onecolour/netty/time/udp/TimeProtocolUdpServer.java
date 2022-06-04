@@ -11,7 +11,7 @@ import java.net.InetSocketAddress;
 
 
 /**
- * <p></p>https://datatracker.ietf.org/doc/html/rfc868</p>
+ * <p>https://datatracker.ietf.org/doc/html/rfc868</p>
  * <p>S: Listen on port 37 (45 octal).</p>
  * <p>U: Send an empty datagram to port 37.</p>
  * <p>S: Receive the empty datagram.</p>
@@ -72,20 +72,7 @@ class TimeProtocolUpdServerHandler extends SimpleChannelInboundHandler<DatagramP
         ByteBuf buf;
         // 创建4字节的byteBuf
         buf = ctx.alloc().buffer(4);
-        long sendContent = System.currentTimeMillis() / 1000 + 2208988800L;
-        // 转为32位无符号整数
-        buf.writeBytes(toByteArray(sendContent));
+        buf.writeInt((int) (System.currentTimeMillis() / 1000L + 2208988800L));
         ctx.writeAndFlush(new DatagramPacket(buf, sender));
-    }
-
-    public static byte[] toByteArray(long value) {
-        byte[] result = new byte[4];
-
-        for (int i = 3; i >= 0; --i) {
-            result[i] = (byte) ((int) (value & 255L));
-            value >>= 8;
-        }
-
-        return result;
     }
 }
