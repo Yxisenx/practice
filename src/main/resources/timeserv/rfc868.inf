@@ -1,0 +1,80 @@
+; RFC868.INF
+;
+; RFC 868 Time Protocol Server
+;
+; Copyright 1999, BTT Software
+
+[version]
+signature="$CHICAGO$"
+Class=NetService
+provider=%V_BTT%
+
+[Manufacturer]
+%V_BTT%=BTT
+
+[BTT]
+%RFC868.DeviceDesc%=RFC868.ndi, RFC868; RFC 868 Time Protocol Server
+
+;*********************************************
+;    RFC 868 Time Server
+;*********************************************
+[RFC868.ndi]
+AddReg=RFC868.ndi.reg
+DeviceID=RFC868
+CopyFiles=RFC868.copy.inf
+
+[RFC868.ndi.reg]
+HKR,Ndi,DeviceID,,RFC868
+; Interfaces
+HKR,Ndi\Interfaces,DefLower,,"winsock"
+HKR,Ndi\Interfaces,LowerRange,,"winsock"
+HKR,Ndi\Compatibility,RequireAny,,"MSTCP"
+; Install-Remove Section
+HKR,Ndi\Install,,,"RFC868.Install"
+HKR,Ndi\Remove,,,"RFC868.Remove"
+; Context help
+HKR,Ndi,HelpText,,%RFC868_HELP%
+
+[RFC868.copy.inf]
+rfc868.inf
+
+[RFC868.Install]
+AddReg=RFC868.Add.reg
+CopyFiles=RFC868.Add.files
+
+[RFC868.Add.reg]
+HKCU,"SOFTWARE\BTT\Time Server","bTaskBar",3,01
+HKLM,"Software\Microsoft\Windows\CurrentVersion\RunServices","RFC 868",,"timeserv.exe"
+
+[RFC868.Add.files]
+timeserv.exe
+
+[RFC868.Remove]
+DelReg=RFC868.Remove.reg
+
+[RFC868.Remove.reg]
+HKCU,"SOFTWARE\BTT\Time Server"
+HKLM,"Software\Microsoft\Windows\CurrentVersion\RunServices","RFC 868"
+
+[SourceDisksNames]
+1=,,0001
+
+[SourceDisksFiles]
+timeserv.exe   =1,,36000
+rfc868.inf   =1,,1024
+
+;****************************************************************************
+; Destination directories
+;****************************************************************************
+[DestinationDirs]
+RFC868.Add.files          = 11    ;Windows System
+RFC868.copy.inf           = 17    ;Inf directory
+
+;****************************************************************************
+; Localizable Strings
+;****************************************************************************
+[strings]
+V_BTT="BTT Software"
+RFC868.DeviceDesc="RFC 868 Time Protocol Server"
+RFC868_HELP="RFC 868 Time Protocol Server, running on UDP/TCP Port 37"
+
