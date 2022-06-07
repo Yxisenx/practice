@@ -23,20 +23,10 @@ public final class DemoProto {
      * id
      * </pre>
      *
-     * <code>string id = 1;</code>
+     * <code>int64 id = 1;</code>
      * @return The id.
      */
-    java.lang.String getId();
-    /**
-     * <pre>
-     * id
-     * </pre>
-     *
-     * <code>string id = 1;</code>
-     * @return The bytes for id.
-     */
-    com.google.protobuf.ByteString
-        getIdBytes();
+    long getId();
 
     /**
      * <pre>
@@ -130,7 +120,6 @@ public final class DemoProto {
       super(builder);
     }
     private Demo() {
-      id_ = "";
       name_ = "";
       desc_ = "";
     }
@@ -166,10 +155,9 @@ public final class DemoProto {
             case 0:
               done = true;
               break;
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
+            case 8: {
 
-              id_ = s;
+              id_ = input.readInt64();
               break;
             }
             case 18: {
@@ -235,49 +223,18 @@ public final class DemoProto {
 
     private int bitField0_;
     public static final int ID_FIELD_NUMBER = 1;
-    private volatile java.lang.Object id_;
+    private long id_;
     /**
      * <pre>
      * id
      * </pre>
      *
-     * <code>string id = 1;</code>
+     * <code>int64 id = 1;</code>
      * @return The id.
      */
     @java.lang.Override
-    public java.lang.String getId() {
-      java.lang.Object ref = id_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        id_ = s;
-        return s;
-      }
-    }
-    /**
-     * <pre>
-     * id
-     * </pre>
-     *
-     * <code>string id = 1;</code>
-     * @return The bytes for id.
-     */
-    @java.lang.Override
-    public com.google.protobuf.ByteString
-        getIdBytes() {
-      java.lang.Object ref = id_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        id_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public long getId() {
+      return id_;
     }
 
     public static final int NAME_FIELD_NUMBER = 2;
@@ -443,8 +400,8 @@ public final class DemoProto {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(id_)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, id_);
+      if (id_ != 0L) {
+        output.writeInt64(1, id_);
       }
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(name_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, name_);
@@ -470,8 +427,9 @@ public final class DemoProto {
       if (size != -1) return size;
 
       size = 0;
-      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(id_)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, id_);
+      if (id_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(1, id_);
       }
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(name_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, name_);
@@ -506,8 +464,8 @@ public final class DemoProto {
       }
       cn.onecolour.netty.pojo.DemoProto.Demo other = (cn.onecolour.netty.pojo.DemoProto.Demo) obj;
 
-      if (!getId()
-          .equals(other.getId())) return false;
+      if (getId()
+          != other.getId()) return false;
       if (!getName()
           .equals(other.getName())) return false;
       if (hasDesc() != other.hasDesc()) return false;
@@ -533,7 +491,8 @@ public final class DemoProto {
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + ID_FIELD_NUMBER;
-      hash = (53 * hash) + getId().hashCode();
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getId());
       hash = (37 * hash) + NAME_FIELD_NUMBER;
       hash = (53 * hash) + getName().hashCode();
       if (hasDesc()) {
@@ -681,7 +640,7 @@ public final class DemoProto {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        id_ = "";
+        id_ = 0L;
 
         name_ = "";
 
@@ -779,9 +738,8 @@ public final class DemoProto {
 
       public Builder mergeFrom(cn.onecolour.netty.pojo.DemoProto.Demo other) {
         if (other == cn.onecolour.netty.pojo.DemoProto.Demo.getDefaultInstance()) return this;
-        if (!other.getId().isEmpty()) {
-          id_ = other.id_;
-          onChanged();
+        if (other.getId() != 0L) {
+          setId(other.getId());
         }
         if (!other.getName().isEmpty()) {
           name_ = other.name_;
@@ -831,63 +789,30 @@ public final class DemoProto {
       }
       private int bitField0_;
 
-      private java.lang.Object id_ = "";
+      private long id_ ;
       /**
        * <pre>
        * id
        * </pre>
        *
-       * <code>string id = 1;</code>
+       * <code>int64 id = 1;</code>
        * @return The id.
        */
-      public java.lang.String getId() {
-        java.lang.Object ref = id_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          id_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
+      @java.lang.Override
+      public long getId() {
+        return id_;
       }
       /**
        * <pre>
        * id
        * </pre>
        *
-       * <code>string id = 1;</code>
-       * @return The bytes for id.
-       */
-      public com.google.protobuf.ByteString
-          getIdBytes() {
-        java.lang.Object ref = id_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          id_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <pre>
-       * id
-       * </pre>
-       *
-       * <code>string id = 1;</code>
+       * <code>int64 id = 1;</code>
        * @param value The id to set.
        * @return This builder for chaining.
        */
-      public Builder setId(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+      public Builder setId(long value) {
+        
         id_ = value;
         onChanged();
         return this;
@@ -897,32 +822,12 @@ public final class DemoProto {
        * id
        * </pre>
        *
-       * <code>string id = 1;</code>
+       * <code>int64 id = 1;</code>
        * @return This builder for chaining.
        */
       public Builder clearId() {
         
-        id_ = getDefaultInstance().getId();
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * id
-       * </pre>
-       *
-       * <code>string id = 1;</code>
-       * @param value The bytes for id to set.
-       * @return This builder for chaining.
-       */
-      public Builder setIdBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        id_ = value;
+        id_ = 0L;
         onChanged();
         return this;
       }
@@ -1326,7 +1231,7 @@ public final class DemoProto {
   static {
     java.lang.String[] descriptorData = {
       "\n\nDemo.proto\022\024onecolour.netty.pojo\"u\n\004De" +
-      "mo\022\n\n\002id\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\021\n\004desc\030\003 \001" +
+      "mo\022\n\n\002id\030\001 \001(\003\022\014\n\004name\030\002 \001(\t\022\021\n\004desc\030\003 \001" +
       "(\tH\000\210\001\001\022\022\n\nupdateTime\030\004 \001(\003\022\022\n\ncreateTim" +
       "e\030\005 \001(\003\022\017\n\007version\030\006 \001(\005B\007\n\005_descB$\n\027cn." +
       "onecolour.netty.pojoB\tDemoProtob\006proto3"
