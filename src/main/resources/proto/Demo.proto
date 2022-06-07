@@ -1,0 +1,16 @@
+syntax = "proto3";
+package onecolour.netty.pojo;
+
+option java_package = "cn.onecolour.netty.pojo";
+option java_outer_classname = "DemoProto";
+
+message Demo{
+  string id = 1; // id
+  string name = 2; // 名称
+  optional string desc = 3; // 描述
+  int64 updateTime = 4; // 更新时间
+  int64 createTime = 5; // 创建时间
+  int32 version = 6; // 版本号
+}
+
+// protoc -I=src/main/resources/proto --java_out=src/main/java Demo.proto
